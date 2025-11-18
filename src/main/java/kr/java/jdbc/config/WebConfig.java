@@ -1,4 +1,17 @@
 package kr.java.jdbc.config;
 
-public class WebConfig {
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration // Bean 등록을 위한...
+@ComponentScan(basePackages = "kr.java.jdbc")
+@EnableWebMvc
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        registry.jsp("/WEB-INF/views/", ".jsp");
+    }
 }
